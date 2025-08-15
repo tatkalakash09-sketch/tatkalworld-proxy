@@ -22,9 +22,15 @@ echo
 echo -e "  ${CYAN}01${NC}) ${GREEN}Install Superfast Proxy IP${NC}"
 echo -e "  ${CYAN}02${NC}) ${RED}Uninstall Proxy${NC}"
 echo
-echo -e "${WHITE}📌 Enter option (01 or 02): ${NC}\c"
 
-read OPTION
+# Get option: from argument or prompt
+if [ -n "${1:-}" ]; then
+    OPTION="$1"
+    echo -e "${WHITE}📌 Auto option selected: $OPTION${NC}"
+else
+    echo -e "${WHITE}📌 Enter option (01 or 02): ${NC}\c"
+    read OPTION
+fi
 
 # -------------------------------
 # OPTION 1: INSTALL PROXY
@@ -189,6 +195,8 @@ elif [[ "$OPTION" == "02" || "$OPTION" == "2" ]]; then
 else
     echo
     echo -e "${RED}❌ Invalid option. Please run again.${NC}"
+    echo -e "${WHITE}→ Use '01' to install or '02' to uninstall${NC}"
+    echo -e "${WHITE}→ Example: ${CYAN}sudo bash proxy.sh 01${NC}"
     echo -e "${WHITE}→ Type '${CYAN}exit${WHITE}' to close terminal${NC}"
     echo
 fi
